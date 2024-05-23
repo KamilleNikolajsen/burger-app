@@ -1,0 +1,51 @@
+[
+    {
+        "restaurant": "Burger Queen",
+        "taste": 4,
+        "texture": 5,
+        "visualPresentation": 3,
+        "reviewText": "The burger had a great taste and texture, but the presentation could be improved."
+    },
+    {
+        "restaurant": "Burger Queen",
+        "taste": 5,
+        "texture": 5,
+        "visualPresentation": 5,
+        "reviewText": "This is the best burger I've ever had!"
+    },
+    {
+        "restaurant": "Burger Queen",
+        "taste": 3,
+        "texture": 2,
+        "visualPresentation": 4,
+        "reviewText": "The burger was okay, but the texture was a bit off."
+    },
+    {
+        "restaurant": "Burger Queen",
+        "taste": 3,
+        "texture": 3,
+        "visualPresentation": 3,
+        "reviewText": "The most mediocre burger I've ever had."
+    },
+    {
+        "restaurant": "Burger Queen",
+        "taste": 4,
+        "texture": 4,
+        "visualPresentation": 4,
+        "reviewText": "The burger was pretty good."
+    },
+    {
+        "restaurant": "Burger Queen",
+        "taste": 3,
+        "texture": 2,
+        "visualPresentation": 4,
+        "reviewText": "The burger was okay, but the texture was a bit off."
+    },
+    {
+        "restaurant": "Burger Queen",
+        "taste": 1,
+        "texture": 1,
+        "visualPresentation": 1,
+        "reviewText": "The burger was awfully."
+    }
+]

@@ -1,0 +1,46 @@
+.nav-bar{
+    width: 15% !important;
+    height: 100vh;
+    background-color: #1473d0;
+}
+
+.nav-bar-title{
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.tab-panel{
+    width: 85%;
+    float: right;
+}
+
+#simple-tab-0{
+    margin-top: 30px;
+    color: white;
+}
+#simple-tab-1,
+#simple-tab-2,
+#simple-tab-3{
+    color: white;
+}
+
+#simple-tab-0:hover,
+#simple-tab-1:hover,
+#simple-tab-2:hover,
+#simple-tab-3:hover {
+    background-color: #116cc5;
+}
+
+.selected-tab::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); /* This will ensure the line remains centered even if its width changes */
+    width:70%;
+    height: 1px;
+    background-color: #ffffff;
+}
