@@ -14,6 +14,7 @@ export default function SearchComponent({ onSearch }: SearchComponentProps) {
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         onSearch(searchTerm);
+        setSearchTerm('');
     };
 
     return (

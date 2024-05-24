@@ -33,6 +33,10 @@ export default function Review() {
                     if(response){
                     toast.success(`Review posted successfully: Text: ${response.text} -Taste: ${response.tasteRating}
                     -Texture: ${response.textureRating} -VP: ${response.visualPresentationRating}`, {autoClose: 3000});
+                    setText("");
+                    setTasteValue(2);
+                    setTextureValue(2);
+                    setVPValue(2);
                     } else {
                         toast.error(`An error occurred while posting the review: ${response}`, {autoClose: 3000});
                     }

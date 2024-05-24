@@ -25,6 +25,8 @@ const handleSubmit = (event: React.FormEvent) => {
             .then((response: PostImageResponse) => {
                 if(response){
                 toast.success(`Image posted successfully: Image Title: ${response.title}`);
+                setImage("");
+                setTitle("");
                 } else {
                     toast.error(`An error occurred while posting the image: ${response}`);
                 }
