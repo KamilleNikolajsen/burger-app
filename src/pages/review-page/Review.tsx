@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import {PostReviewResponse} from "../../models/apiModels";
 import {postReview} from "../../services/ApiServiceReview";
 
-function Review() {
+export default function Review() {
     const [text, setText] = useState("");
     const [tasteValue, setTasteValue] = React.useState<number | null>(2);
     const [textureValue, setTextureValue] = React.useState<number | null>(2);
@@ -92,7 +92,7 @@ function Review() {
                     </div>
                     <div className="review-text">
                         <TextField
-                            label="Review"
+                            label="Write your review here"
                             variant="outlined"
                             multiline
                             rows={10}
@@ -119,4 +119,4 @@ function Review() {
     );
 }
 
-export default Review;
+//export default Review;
