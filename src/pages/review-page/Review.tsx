@@ -5,10 +5,10 @@ import './Review.css';
 import Typography from "@mui/material/Typography";
 import Rating from "@mui/material/Rating";
 import DisplayReviews from "./DisplayReviews";
-import {postReview} from "../../services/postApiService";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {PostReviewResponse} from "../../models/apiModels";
+import {postReview} from "../../services/ApiServiceReview";
 
 function Review() {
     const [text, setText] = useState("");

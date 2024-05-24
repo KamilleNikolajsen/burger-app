@@ -3,10 +3,9 @@ import * as React from "react";
 import {Box, TextField} from "@mui/material";
 import Button from "@mui/material/Button";
 import './Gallery.css';
-import {postImage, postReview} from "../../services/postApiService";
-import {Toast} from "react-toastify/dist/components";
 import {toast, ToastContainer} from "react-toastify";
 import {PostImageResponse} from "../../models/apiModels";
+import {postImage} from "../../services/ApiServiceGallery";
 
 export default function GetImage(){
     const [image, setImage] = useState("");

@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {GoogleMap, LoadScript, Marker, useJsApiLoader} from '@react-google-maps/api';
-import { getBurgerPlaces } from "../../services/getApiService";
 import { Place } from "../../models/apiModels";
 import SearchComponent from "./SearchComponent";
 import './BurgerMap.css';
+import {getBurgerPlaces} from "../../services/ApiServiceLocations";
+import {toast, ToastContainer} from "react-toastify";
 
 const center = {
   lat: 55.7355,
@@ -26,10 +27,14 @@ function BurgerPlacesMap() {
   }, []);
 
   const handleSearch = (searchTerm: string) => {
-    const filtered = burgerPlaces.filter(place =>
-        place.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredPlaces(filtered);
+    if (!searchTerm) {
+      toast.error("Search field must be filled out before searching.");
+    } else {
+      const filtered = burgerPlaces.filter(place =>
+          place.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredPlaces(filtered);
+    }
   };
 
   const { isLoaded } = useJsApiLoader({
@@ -54,6 +59,7 @@ function BurgerPlacesMap() {
               }}  />
           ))}
         </GoogleMap>}
+        <ToastContainer/>
       </div>
   )
 }

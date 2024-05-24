@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import {getReviews} from "../../services/getApiService";
 import Typography from "@mui/material/Typography";
 import Rating from "@mui/material/Rating";
 import {Review} from "../../models/apiModels";
+import {getReviews} from "../../services/ApiServiceReview";
 
 export default function DisplayReviews() {
     const [reviews, setReviews] = useState<Review[]>([]);
