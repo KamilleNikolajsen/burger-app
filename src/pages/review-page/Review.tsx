@@ -5,21 +5,37 @@ import './Review.css';
 import Typography from "@mui/material/Typography";
 import Rating from "@mui/material/Rating";
 import DisplayReviews from "./DisplayReviews";
+import {postReview} from "../../services/postApiService";
 
 function Review() {
-    const [taste, setTaste] = useState("");
-    const [value, setValue] = React.useState<number | null>(2);
+    const [text, setText] = useState("");
+    const [tasteValue, setTasteValue] = React.useState<number | null>(2);
+    const [textureValue, setTextureValue] = React.useState<number | null>(2);
+    const [vPValue, setVPValue] = React.useState<number | null>(2);
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
-        // Do something with taste, texture, and visualPresentation
-        console.log({taste});
+        if (text && tasteValue && textureValue && vPValue) {
+            const review = {
+                taste: text,
+                tasteRating: tasteValue,
+                textureRating: textureValue,
+                visualPresentationRating: vPValue
+            };
+            postReview(review)
+                .then(response => {
+                    console.log('Review posted successfully:', response);
+                })
+                .catch(error => {
+                    console.error('An error occurred while posting the review:', error);
+                });
+        }
     };
 
     return (
         <div className="review">
             <header className="review-header">
-                <h1>Review</h1>
+                <h1>Burger Reviews</h1>
             </header>
             <div className="review-header-text">
                 On this page you can review burgers based on the taste, texture, and visual presentation. You can also
@@ -36,9 +52,9 @@ function Review() {
                             <Typography>Taste</Typography>
                             <Rating
                                 name="simple-controlled"
-                                value={value}
+                                value={tasteValue}
                                 onChange={(event, newValue) => {
-                                    setValue(newValue);
+                                    setTasteValue(newValue);
                                 }}
                             />
                         </div>
@@ -46,9 +62,9 @@ function Review() {
                             <Typography>Texture</Typography>
                             <Rating
                                 name="simple-controlled"
-                                value={value}
+                                value={textureValue}
                                 onChange={(event, newValue) => {
-                                    setValue(newValue);
+                                    setTextureValue(newValue);
                                 }}
                             />
                         </div>
@@ -56,9 +72,9 @@ function Review() {
                             <Typography>Visual Presentation</Typography>
                             <Rating
                                 name="simple-controlled"
-                                value={value}
+                                value={vPValue}
                                 onChange={(event, newValue) => {
-                                    setValue(newValue);
+                                    setVPValue(newValue);
                                 }}
                             />
                         </div>
@@ -69,8 +85,8 @@ function Review() {
                             variant="outlined"
                             multiline
                             rows={10}
-                            value={taste}
-                            onChange={(e) => setTaste(e.target.value)}
+                            value={text}
+                            onChange={(e) => setText(e.target.value)}
                             style={{width: '100%'}}
                         />
                     </div>
