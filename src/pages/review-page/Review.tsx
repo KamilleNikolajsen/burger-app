@@ -6,6 +6,9 @@ import Typography from "@mui/material/Typography";
 import Rating from "@mui/material/Rating";
 import DisplayReviews from "./DisplayReviews";
 import {postReview} from "../../services/postApiService";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {PostReviewResponse} from "../../models/apiModels";
 
 function Review() {
     const [text, setText] = useState("");
@@ -15,19 +18,27 @@ function Review() {
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
-        if (text && tasteValue && textureValue && vPValue) {
+        if (!text || !tasteValue || !textureValue || !vPValue) {
+            toast.error("All fields must be filled out before submitting.");
+        }
+        else {
             const review = {
-                taste: text,
+                text: text,
                 tasteRating: tasteValue,
                 textureRating: textureValue,
                 visualPresentationRating: vPValue
             };
             postReview(review)
-                .then(response => {
-                    console.log('Review posted successfully:', response);
+                .then((response: PostReviewResponse) => {
+                    if(response){
+                    toast.success(`Review posted successfully: Text: ${response.text} -Taste: ${response.tasteRating}
+                    -Texture: ${response.textureRating} -VP: ${response.visualPresentationRating}`, {autoClose: 3000});
+                    } else {
+                        toast.error(`An error occurred while posting the review: ${response}`, {autoClose: 3000});
+                    }
                 })
                 .catch(error => {
-                    console.error('An error occurred while posting the review:', error);
+                    toast.error(`An error occurred while posting the review: ${error}`, {autoClose: 3000});
                 });
         }
     };
@@ -103,6 +114,7 @@ function Review() {
                     </div>
                 </div>
             </div>
+            <ToastContainer/>
         </div>
     );
 }

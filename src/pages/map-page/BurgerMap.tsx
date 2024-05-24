@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import {GoogleMap, LoadScript, Marker, useJsApiLoader} from '@react-google-maps/api';
 import { getBurgerPlaces } from "../../services/getApiService";
 import { Place } from "../../models/apiModels";
 import SearchComponent from "./SearchComponent";
@@ -32,14 +32,18 @@ function BurgerPlacesMap() {
     setFilteredPlaces(filtered);
   };
 
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: 'AIzaSyDmPFdAoP4v3mxdlPzoTrkld7osrvM9SlM',
+    libraries: ['geometry', 'drawing'],
+  });
+
   return (
-      <LoadScript
-          googleMapsApiKey="AIzaSyDmPFdAoP4v3mxdlPzoTrkld7osrvM9SlM"
-      >
+      <div>
         <div className="map-search">
-        <SearchComponent onSearch={handleSearch} />
-      </div>
-        <GoogleMap
+          <SearchComponent onSearch={handleSearch} />
+        </div>
+        {isLoaded && <GoogleMap
             mapContainerClassName="map-container-style"
             center={center}
             zoom={8}
@@ -49,8 +53,8 @@ function BurgerPlacesMap() {
                 url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
               }}  />
           ))}
-        </GoogleMap>
-      </LoadScript>
+        </GoogleMap>}
+      </div>
   )
 }
 

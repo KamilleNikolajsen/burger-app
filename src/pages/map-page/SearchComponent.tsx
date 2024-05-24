@@ -2,10 +2,11 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import './BurgerMap.css';
 import Button from "@mui/material/Button";
 import {TextField} from "@mui/material";
+import {SearchComponentProps} from "../../models/apiModels";
 
-interface SearchComponentProps {
+/*interface SearchComponentProps {
   onSearch: (searchTerm: string) => void;
-}
+}*/
 
 export default function SearchComponent({ onSearch }: SearchComponentProps) {
     const [searchTerm, setSearchTerm] = useState('');

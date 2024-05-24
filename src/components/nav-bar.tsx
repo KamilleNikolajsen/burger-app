@@ -5,23 +5,12 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Review from "../pages/review-page/Review";
 import Home from "../pages/home-page/Home";
-import GetImage from "../pages/gallery-page/Image";
-import GalleryList from "../pages/gallery-page/Gallery";
 import FastfoodIcon from '@mui/icons-material/Fastfood';
 import './nav-bar.css';
 import BurgerPlacesMap from "../pages/map-page/BurgerMap";
-
-interface TabPanelProps {
-    children?: React.ReactNode;
-    index: number;
-    value: number;
-}
-
-const burgerPlaces = [
-    { id: 1, name: 'Burger Place 1', address: 'Address 1', lat: 51.505, lng: -0.09 },
-    //{ id: 2, name: 'Burger Place 2', address: 'Address 2', lat: 51.515, lng: -0.1 },
-    // Add more burger places here
-];
+import {TabPanelProps} from "../models/apiModels";
+import GetImage from "../pages/gallery-page/GalleryPage";
+import GalleryList from "../pages/gallery-page/GalleryList";
 
 function CustomTabPanel(props: TabPanelProps) {
     const { children, value, index } = props;

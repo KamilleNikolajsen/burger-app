@@ -3,7 +3,10 @@ import * as React from "react";
 import {Box, TextField} from "@mui/material";
 import Button from "@mui/material/Button";
 import './Gallery.css';
-import {postReview} from "../../services/postApiService";
+import {postImage, postReview} from "../../services/postApiService";
+import {Toast} from "react-toastify/dist/components";
+import {toast, ToastContainer} from "react-toastify";
+import {PostImageResponse} from "../../models/apiModels";
 
 export default function GetImage(){
     const [image, setImage] = useState("");
@@ -11,17 +14,24 @@ export default function GetImage(){
 
 const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    if (image && title) {
-        const postImage = {
+    if (!image || !title) {
+        toast.error("Both fields must be filled out before submitting.");
+    }
+    else {
+        const imageData = {
             img: image,
             title: title
         };
-        postReview(postImage)
-            .then(response => {
-                console.log('Review posted successfully:', response);
+        postImage(imageData)
+            .then((response: PostImageResponse) => {
+                if(response){
+                toast.success(`Image posted successfully: Image Title: ${response.title}`);
+                } else {
+                    toast.error(`An error occurred while posting the image: ${response}`);
+                }
             })
             .catch(error => {
-                console.error('An error occurred while posting the review:', error);
+                toast.error(`An error occurred while posting the image: ${error}`);
             });
     }
 };
@@ -36,7 +46,7 @@ const handleSubmit = (event: React.FormEvent) => {
             </div>
             <div className="div-with-divider"/>
             <div className="get-image-content">
-                <Box component="form" noValidate autoComplete="off">
+                <Box component="form" noValidate autoComplete="off" onSubmit={handleSubmit}>
                     <div className="get-image-upload">
                         <div className="get-image-field">
                             <TextField
@@ -57,13 +67,14 @@ const handleSubmit = (event: React.FormEvent) => {
                             />
                         </div>
                         <div className="get-image-field">
-                            <Button variant="contained" type="submit" onSubmit={handleSubmit}>
+                            <Button variant="contained" type="submit">
                                 Submit Image
                             </Button>
                         </div>
                     </div>
                 </Box>
             </div>
+            <ToastContainer/>
         </div>
     );
 }
