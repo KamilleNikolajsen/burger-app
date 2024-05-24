@@ -1,0 +1,25 @@
+.home__image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.home__description {
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.home-title{
+    text-align: center;
+    font-size: 2em;
+    margin: 20px;
+}
+
+.div-with-divider {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    margin: 20px;
+}

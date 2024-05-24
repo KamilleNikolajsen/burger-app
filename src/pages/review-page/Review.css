@@ -1,0 +1,81 @@
+.MuiTextField-root {
+    width: 30%;
+    margin: 10px;
+    padding: 10px;
+}
+
+.review-header{
+    display: flex;
+    justify-content: center;
+}
+.review-header-text{
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.review-content{
+    display: flex;
+    margin: 10px;
+}
+
+.review-box{
+    width: 55%;
+    justify-content: center;
+    margin: 10px;
+}
+
+.review-ratings {
+    display: flex;
+    justify-content: center;
+}
+
+.review-rating{
+    margin-right: 15px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.review-text{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.review-gallery{
+    justify-content: center;
+    margin: 10px;
+    overflow: auto;
+}
+
+.review-gallery-content{
+    justify-content: center;
+    margin: 20px;
+    border-style: solid;
+    border-color: gray;
+    max-height: 600px;
+    overflow: auto;
+    border-radius: 4px;
+}
+
+.reviews-text{
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.reviewer-name{
+    text-align: center;
+    font-weight: bold;
+}
+
+.review-button{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.div-with-divider {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    margin: 20px;
+}
