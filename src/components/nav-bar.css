@@ -44,3 +44,32 @@
     height: 1px;
     background-color: #ffffff;
 }
+
+.page-title{
+    font-size: 30px;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.page-map{
+    margin-top: 10%;
+    width: 50%;
+    float: right;
+}
+
+.burger-map{
+    margin-top: 5%;
+    width: 50%;
+    margin-left: 25%;
+}
+
+.div-with-divider {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    margin: 20px;
+}
+
+.burger-text{
+    text-align: center;
+    margin-top: 20px;
+}

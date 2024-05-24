@@ -2,9 +2,9 @@ import * as React from 'react';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import {useEffect, useState} from "react";
-import {getImages} from "../../services/getApiService";
 import {Box, ImageListItemBar} from "@mui/material";
 import {Image} from "../../models/apiModels";
+import {getImages} from "../../services/ApiServiceGallery";
 
 export default function GalleryList() {
     const [images, setImages] = useState<Image[]>([]);

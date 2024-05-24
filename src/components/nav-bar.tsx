@@ -5,16 +5,12 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Review from "../pages/review-page/Review";
 import Home from "../pages/home-page/Home";
-import GetImage from "../pages/gallery-page/Image";
-import GalleryList from "../pages/gallery-page/Gallery";
 import FastfoodIcon from '@mui/icons-material/Fastfood';
 import './nav-bar.css';
-
-interface TabPanelProps {
-    children?: React.ReactNode;
-    index: number;
-    value: number;
-}
+import BurgerPlacesMap from "../pages/map-page/BurgerMap";
+import {TabPanelProps} from "../models/apiModels";
+import GetImage from "../pages/gallery-page/GalleryPage";
+import GalleryList from "../pages/gallery-page/GalleryList";
 
 function CustomTabPanel(props: TabPanelProps) {
     const { children, value, index } = props;
@@ -74,7 +70,16 @@ export default function MenuTabs() {
                 </div>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={3}>
-                On this page you can find nearby burger places on the map
+                <div className="page-title">
+                    Map of Burger Places
+                </div>
+                <div className="burger-text">
+                    Here you can find the best burgers in and around town. Just search for a city or your favorite burger place.
+                </div>
+                <div className="div-with-divider"/>
+                <div className="burger-map">
+                    <BurgerPlacesMap/>
+                </div>
             </CustomTabPanel>
         </Box>
     );

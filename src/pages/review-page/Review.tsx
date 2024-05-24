@@ -5,21 +5,48 @@ import './Review.css';
 import Typography from "@mui/material/Typography";
 import Rating from "@mui/material/Rating";
 import DisplayReviews from "./DisplayReviews";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {PostReviewResponse} from "../../models/apiModels";
+import {postReview} from "../../services/ApiServiceReview";
 
-function Review() {
-    const [taste, setTaste] = useState("");
-    const [value, setValue] = React.useState<number | null>(2);
+export default function Review() {
+    const [text, setText] = useState("");
+    const [tasteValue, setTasteValue] = React.useState<number | null>(2);
+    const [textureValue, setTextureValue] = React.useState<number | null>(2);
+    const [vPValue, setVPValue] = React.useState<number | null>(2);
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
-        // Do something with taste, texture, and visualPresentation
-        console.log({taste});
+        if (!text || !tasteValue || !textureValue || !vPValue) {
+            toast.error("All fields must be filled out before submitting.");
+        }
+        else {
+            const review = {
+                text: text,
+                tasteRating: tasteValue,
+                textureRating: textureValue,
+                visualPresentationRating: vPValue
+            };
+            postReview(review)
+                .then((response: PostReviewResponse) => {
+                    if(response){
+                    toast.success(`Review posted successfully: Text: ${response.text} -Taste: ${response.tasteRating}
+                    -Texture: ${response.textureRating} -VP: ${response.visualPresentationRating}`, {autoClose: 3000});
+                    } else {
+                        toast.error(`An error occurred while posting the review: ${response}`, {autoClose: 3000});
+                    }
+                })
+                .catch(error => {
+                    toast.error(`An error occurred while posting the review: ${error}`, {autoClose: 3000});
+                });
+        }
     };
 
     return (
         <div className="review">
             <header className="review-header">
-                <h1>Review</h1>
+                <h1>Burger Reviews</h1>
             </header>
             <div className="review-header-text">
                 On this page you can review burgers based on the taste, texture, and visual presentation. You can also
@@ -36,9 +63,9 @@ function Review() {
                             <Typography>Taste</Typography>
                             <Rating
                                 name="simple-controlled"
-                                value={value}
+                                value={tasteValue}
                                 onChange={(event, newValue) => {
-                                    setValue(newValue);
+                                    setTasteValue(newValue);
                                 }}
                             />
                         </div>
@@ -46,9 +73,9 @@ function Review() {
                             <Typography>Texture</Typography>
                             <Rating
                                 name="simple-controlled"
-                                value={value}
+                                value={textureValue}
                                 onChange={(event, newValue) => {
-                                    setValue(newValue);
+                                    setTextureValue(newValue);
                                 }}
                             />
                         </div>
@@ -56,21 +83,21 @@ function Review() {
                             <Typography>Visual Presentation</Typography>
                             <Rating
                                 name="simple-controlled"
-                                value={value}
+                                value={vPValue}
                                 onChange={(event, newValue) => {
-                                    setValue(newValue);
+                                    setVPValue(newValue);
                                 }}
                             />
                         </div>
                     </div>
                     <div className="review-text">
                         <TextField
-                            label="Review"
+                            label="Write your review here"
                             variant="outlined"
                             multiline
                             rows={10}
-                            value={taste}
-                            onChange={(e) => setTaste(e.target.value)}
+                            value={text}
+                            onChange={(e) => setText(e.target.value)}
                             style={{width: '100%'}}
                         />
                     </div>
@@ -87,8 +114,9 @@ function Review() {
                     </div>
                 </div>
             </div>
+            <ToastContainer/>
         </div>
     );
 }
 
-export default Review;
+//export default Review;
