@@ -39,3 +39,27 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
     margin: 20px;
 }
+
+.text-field-image-upload::before{
+    content: 'Upload Image';
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #1976d2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    text-transform: uppercase;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.text-field-image-upload input[type="file"] {
+    opacity: 0;
+    cursor: pointer;
+
+}
+
+.check-icon{
+    color: green;
+}
