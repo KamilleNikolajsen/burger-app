@@ -125,42 +125,48 @@
       "address": "Address 1",
       "lat": 55.7352,
       "lng": 9.1307,
-      "id": "8ebe"
+      "id": "8ebe",
+      "openingTimes": "9:00 AM - 10:00 PM"
     },
     {
       "name": "Grindsted Burger",
       "address": "Address 2",
       "lat": 55.7545,
       "lng": 8.9123,
-      "id": "744f"
+      "id": "744f",
+      "openingTimes": "9:00 AM - 10:00 PM"
     },
     {
       "name": "Vejle Burger",
       "address": "Address 3",
       "lat": 55.7093,
       "lng": 9.5357,
-      "id": "06a9"
+      "id": "06a9",
+      "openingTimes": "9:00 AM - 10:00 PM"
     },
     {
       "name": "Kolding Burger",
       "address": "Address 4",
       "lat": 55.4919,
       "lng": 9.4722,
-      "id": "07dd"
+      "id": "07dd",
+      "openingTimes": "9:00 AM - 10:00 PM"
     },
     {
       "name": "Esbjerg Burger",
       "address": "Address 5",
       "lat": 55.4767,
       "lng": 8.4594,
-      "id": "88a9"
+      "id": "88a9",
+      "openingTimes": "9:00 AM - 10:00 PM"
     },
     {
       "name": "Horsens Burger",
       "address": "Address 6",
       "lat": 55.8607,
       "lng": 9.8503,
-      "id": "afd2"
+      "id": "afd2",
+      "openingTimes": "9:00 AM - 10:00 PM"
     }
   ]
 }
