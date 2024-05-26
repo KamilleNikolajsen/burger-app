@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {GoogleMap, LoadScript, Marker, useJsApiLoader} from '@react-google-maps/api';
+import {GoogleMap, InfoWindowF, Marker, useJsApiLoader} from '@react-google-maps/api';
 import { Place } from "../../models/apiModels";
 import SearchComponent from "./SearchComponent";
 import './BurgerMap.css';
@@ -14,6 +14,7 @@ const center = {
 function BurgerPlacesMap() {
     const [burgerPlaces, setBurgerPlaces] = useState<Place[]>([]);
     const [filteredPlaces, setFilteredPlaces] = useState(burgerPlaces);
+    const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
 
   useEffect(() => {
     getBurgerPlaces().then((response: Place[]) => {
@@ -54,10 +55,22 @@ function BurgerPlacesMap() {
             zoom={8}
         >
           {filteredPlaces.map((burgerPlace: Place, index) => (
-              <Marker key={index} position={{ lat: burgerPlace.lat, lng: burgerPlace.lng }} icon={{
+              <Marker onClick={() => setSelectedPlace(burgerPlace)} key={index} position={{ lat: burgerPlace.lat, lng: burgerPlace.lng }} icon={{
                 url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
-              }}  />
+              }}/>
           ))}
+          {selectedPlace && (
+              <InfoWindowF
+                  position={{ lat: selectedPlace.lat, lng: selectedPlace.lng }}
+                  onCloseClick={() => setSelectedPlace(null)}
+              >
+                <div>
+                  <h2>{selectedPlace.name}</h2>
+                  <p>Address: {selectedPlace.address}</p>
+                  <p>Opening Time Mon-Sun: {selectedPlace.openingTimes}</p>
+                </div>
+              </InfoWindowF>
+          )}
         </GoogleMap>}
         <ToastContainer/>
       </div>

@@ -6,10 +6,26 @@ import './Gallery.css';
 import {toast, ToastContainer} from "react-toastify";
 import {PostImageResponse} from "../../models/apiModels";
 import {postImage} from "../../services/ApiServiceGallery";
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 export default function GetImage(){
     const [image, setImage] = useState("");
     const [title, setTitle] = useState("");
+    const [isFileSelected, setIsFileSelected] = useState(false);
+
+    const handleUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                setImage(e.target?.result as string);
+            };
+            reader.readAsDataURL(file);
+            setIsFileSelected(true);
+        } else {
+            setIsFileSelected(false);
+        }
+    };
 
 const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -27,6 +43,7 @@ const handleSubmit = (event: React.FormEvent) => {
                 toast.success(`Image posted successfully: Image Title: ${response.title}`);
                 setImage("");
                 setTitle("");
+                setIsFileSelected(false);
                 } else {
                     toast.error(`An error occurred while posting the image: ${response}`);
                 }
@@ -49,15 +66,18 @@ const handleSubmit = (event: React.FormEvent) => {
             <div className="get-image-content">
                 <Box component="form" noValidate autoComplete="off" onSubmit={handleSubmit}>
                     <div className="get-image-upload">
-                        <div className="get-image-field">
-                            <TextField
-                                className="text-field"
-                                label="Image"
-                                variant="outlined"
+    {/*                        <Input
+                                className="get-image-input"
+                                type="File"
                                 value={image}
                                 onChange={(e) => setImage(e.target.value)}
+                            />*/}
+                            <TextField
+                                className="text-field-image-upload"
+                                type="file"
+                                onChange={handleUpload}
                             />
-                        </div>
+                        {isFileSelected && <CheckCircleIcon className="check-icon"/>}
                         <div className="get-image-field">
                             <TextField
                                 className="text-field"

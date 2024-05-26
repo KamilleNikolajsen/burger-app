@@ -18,6 +18,7 @@ export type Image = {
     address: string;
     lat: number;
     lng: number;
+    openingTimes: string;
 }
 
 export type BurgerMapProps = {

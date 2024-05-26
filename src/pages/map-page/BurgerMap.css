@@ -24,3 +24,7 @@
 .search-input{
     width: 70%;
 }
+
+.span{
+    display: none;
+}
