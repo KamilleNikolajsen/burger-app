@@ -6,6 +6,11 @@ Clone the project and open it.
 Then run the line: { npm run dev }
 in the terminal, to start the app and mock database (db.jason)
 
+I have put up a mock REST API based on a JSON file (the db.json).
+This is configures in the package.json file under scripts.
+When running the {npm run dev} both the start and the server script will be run.
+This allows me to develop an application with a mock backend that serves data from the db.json file
+
 ## How it works
 
 #### *Home*
